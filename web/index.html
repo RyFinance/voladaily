@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voladaily</title>
+<meta name="description" content="Expected return and volatility for every session ahead: S&P 500, Nasdaq 100 and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>try{if(localStorage.getItem("vd_theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+  <header class="top">
+    <a class="brand" href="/"><em>Vola</em>DAILY</a>
+    <div class="top-mid mono" id="top-mid"></div>
+    <form class="search" id="search" autocomplete="off"><input id="q" class="mono" placeholder="TICKER" maxlength="8" spellcheck="false" aria-label="Ticker"></form>
+    <button class="theme mono" id="info-btn" aria-label="How to read Voladaily">Info</button>
+    <button class="theme mono" id="theme" aria-label="Toggle dark theme">Dark</button>
+  </header>
+
+  <nav class="pager" id="pager" aria-label="Markets"></nav>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="guide-bg" id="guide" hidden>
+    <article class="guide" role="dialog" aria-modal="true" aria-labelledby="g-title">
+      <div class="g-head"><div><div class="mono g-k">Field guide</div><h2 id="g-title">How to read <em>Vola</em>daily</h2></div><button class="theme mono" id="g-close">Close</button></div>
+      <p class="g-lede">Every trading day ahead gets two forecasts: <b>which way</b> the market leans and <b>how far</b> it is likely to move. The second is the reliable one.</p>
+      <div class="g-grid">
+        <section><h3>The numbers</h3><dl>
+          <dt class="up">+0.11%</dt><dd>Expected return, close to close. Small by nature: a few tenths of a percent on a normal day.</dd>
+          <dt>±0.81%</dt><dd>Typical size of the move, up or down. This is where the model has real skill.</dd>
+          <dt>55% up</dt><dd>Chance the session closes higher. 50% is a coin flip; most days sit between 48% and 58%.</dd>
+          <dt>80% range</dt><dd>Four days out of five should close inside it.</dd>
+          <dt class="bolt-dt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4 14h6.5L9 22l11-13h-6.8L13.5 2z"/></svg></dt><dd>High-risk session: a big scheduled event (Fed, CPI, jobs, earnings) or an unusually wide expected move.</dd>
+        </dl></section>
+        <section><h3>The page</h3><dl>
+          <dt>Brief</dt><dd>Under the title: the next session in one line, the week ahead, and the events to watch.</dd>
+          <dt>Day</dt><dd>Calendar of the next 21 sessions with week totals. Click any day, week or the month for the full read.</dd>
+          <dt>Week</dt><dd>Expected return and odds for each week, with its scheduled events.</dd>
+          <dt>Month</dt><dd>21-session outlook: pullback odds, number of 1%+ days and a fan of likely paths.</dd>
+          <dt>Why</dt><dd>Each day's lean broken into its causes, such as reversal after a big drop, pre-Fed drift or turn of the month.</dd>
+        </dl></section>
+        <section><h3>Controls</h3><dl>
+          <dt>← →</dt><dd>Change market. A sideways trackpad swipe or a touch swipe also works.</dd>
+          <dt>↑ ↓</dt><dd>Move a week in the calendar, or a row in week view.</dd>
+          <dt>D W M</dt><dd>Day, week and month views.</dd>
+          <dt>+ / ×</dt><dd>Add a ticker from the circles on the right or the search box; × removes one. Your list stays on this device.</dd>
+        </dl></section>
+        <section><h3>How it works</h3>
+          <p>Size comes from a realized-volatility model (HAR) fed by the VIX curve and the economic calendar: CPI, jobs, Fed days, options expiry, elections and, for single stocks, earnings dates from SEC filings.</p>
+          <p>Direction is a heavily shrunk regression on effects that are well documented: short-term reversal, pre-Fed drift, turn of the month and the volatility risk premium.</p>
+          <p>Both are tested walk-forward since 2010, on data the model never saw. The track record at the bottom of each page shows how it has done, including where it does no better than "always up".</p>
+          <p class="g-warn">A forecast of odds, not a promise. Not investment advice.</p>
+        </section>
+      </div>
+    </article>
+  </div>
+
+  <div class="hint mono" id="hint">Swipe sideways or use ← → to change market</div>
+  <div id="err" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
